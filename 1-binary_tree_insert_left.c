@@ -3,6 +3,7 @@
  * Auth: Sess254
  */
 #include "binary_trees.h"
+
 /**
  * binary_tree_insert_left - inserts a node as the left child of another node
  * @parent: pointer to the node to insert the left child in
@@ -19,11 +20,7 @@ binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value)
 		return (NULL);
 	}
 
-	new_node->n = value;
-	new_node->parent = parent;
-	new_node->left = NULL;
-	new_node->right = NULL;
-
+	new_node = binary_tree_node(parent, value);
 	if (parent != NULL)
 	{
 		if (parent->left != NULL)
@@ -31,9 +28,8 @@ binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value)
 			parent->left->parent = new_node;
 			new_node->left = parent->left;
 		}
-		parent->left = new_node;
 	}
-
+	parent->left = new_node;
 	return (new_node);
 }
 
